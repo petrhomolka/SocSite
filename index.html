@@ -5,28 +5,8 @@
     <link rel="icon" href="./favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SocSite</title>
-    <script>
-      // This script checks if we were redirected from the 404.html page
-      // and if so, it redirects to the proper route using Vue Router
-      (function() {
-        // If we received a redirect with the path in the hash
-        if (window.location.hash && window.location.hash.length > 2) {
-          // Get the path from the hash (remove the # symbol)
-          var path = window.location.hash.substring(1);
-          
-          // Store the path for Vue Router to use once it initializes
-          window.__INITIAL_PATH__ = path;
-          
-          // Only replace the hash with empty, but maintain the base path
-          // This keeps us at /SocSite/ without the hash
-          history.replaceState(null, null, window.location.pathname);
-          
-          // Vue Router will handle routing to the correct component once initialized
-          console.log("Redirected from 404.html to path:", path);
-        }
-      })();
-    </script>
-    <script type="module" crossorigin src="./assets/index-CPFBMM-I.js"></script>
+    <!-- No special script needed here as the hash-based routing will handle redirects naturally -->
+    <script type="module" crossorigin src="./assets/index-uLo57zw1.js"></script>
     <link rel="stylesheet" crossorigin href="./assets/index-CoavnNHm.css">
   </head>
   <body>

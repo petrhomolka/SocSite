@@ -9,9 +9,14 @@
     
     // Get the current path excluding the repo name
     var fullPath = window.location.pathname;
-    var pathWithoutRepo = fullPath.replace('/' + repoName + '/', '');
+    
+    // Try to extract the path after the repository name
+    var pathRegex = new RegExp('\\/' + repoName + '\\/(.*)');
+    var matches = fullPath.match(pathRegex);
+    var pathWithoutRepo = matches && matches[1] ? matches[1] : '';
     
     // Create the redirect URL with the path in the hash fragment
+    // Note: Already using hash format for Vue Router in hash mode
     var redirectUrl = window.location.origin + '/' + repoName + '/#/' + pathWithoutRepo;
     
     // Log for debugging
@@ -32,7 +37,11 @@
     
     // Get the current path excluding the repo name
     var fullPath = window.location.pathname;
-    var pathWithoutRepo = fullPath.replace('/' + repoName + '/', '');
+    
+    // Try to extract the path after the repository name
+    var pathRegex = new RegExp('\\/' + repoName + '\\/(.*)');
+    var matches = fullPath.match(pathRegex);
+    var pathWithoutRepo = matches && matches[1] ? matches[1] : '';
     
     // Update the fallback link
     document.getElementById('redirect-link').href = window.location.origin + '/' + repoName + '/#/' + pathWithoutRepo;
