@@ -5,6 +5,22 @@
     <link rel="icon" href="./favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SocSite</title>
+    <script>
+      // This script checks if we were redirected from the 404.html page
+      // and if so, it redirects to the proper route using Vue Router
+      (function() {
+        // If we received a redirect with the path in the hash
+        if (window.location.hash && window.location.hash.length > 1) {
+          // Get the path from the hash
+          var path = window.location.hash.substring(1);
+          
+          // Remove the hash from the URL without reloading the page
+          history.replaceState(null, null, window.location.pathname + path);
+          
+          // The Vue router will automatically handle this path once the app is mounted
+        }
+      })();
+    </script>
     <script type="module" crossorigin src="./assets/index-Bnmkvoq2.js"></script>
     <link rel="stylesheet" crossorigin href="./assets/index-CoavnNHm.css">
   </head>
