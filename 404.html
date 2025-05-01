@@ -12,12 +12,17 @@
     var pathSegments = window.location.pathname.split('/');
     var repoName = pathSegments[1]; // "SocSite" in your case
     
-    // Get the URL after the repo name
+    // Get the URL after the repo name, ensuring we don't have double slashes
     var fullPath = window.location.pathname;
     var pathWithoutRepo = fullPath.substring(fullPath.indexOf(repoName) + repoName.length);
     
+    // Make sure pathWithoutRepo doesn't start with a slash to avoid double slashes
+    if (pathWithoutRepo.startsWith('/')) {
+      pathWithoutRepo = pathWithoutRepo.substring(1);
+    }
+    
     // Redirect to the main page with the path in the hash
-    var redirectUrl = window.location.origin + '/' + repoName + '/#' + pathWithoutRepo;
+    var redirectUrl = window.location.origin + '/' + repoName + '/#/' + pathWithoutRepo;
     window.location.replace(redirectUrl);
   </script>
 </head>
@@ -25,7 +30,7 @@
   <h1>Redirecting...</h1>
   <p>If you are not redirected automatically, please click <a id="redirect-link" href="#">here</a>.</p>
   <script>
-    document.getElementById('redirect-link').href = window.location.origin + pathSegments[1] + '/';
+    document.getElementById('redirect-link').href = window.location.origin + '/' + pathSegments[1] + '/';
   </script>
 </body>
 </html>

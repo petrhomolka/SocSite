@@ -11,13 +11,15 @@
       (function() {
         // If we received a redirect with the path in the hash
         if (window.location.hash && window.location.hash.length > 1) {
-          // Get the path from the hash
+          // Get the path from the hash (remove the # symbol)
           var path = window.location.hash.substring(1);
           
           // Remove the hash from the URL without reloading the page
-          history.replaceState(null, null, window.location.pathname + path);
+          // Don't add the path to pathname, as Vue Router will handle it
+          history.replaceState(null, null, window.location.pathname);
           
           // The Vue router will automatically handle this path once the app is mounted
+          // This approach relies on Vue Router's history mode handling the path
         }
       })();
     </script>
