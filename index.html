@@ -10,20 +10,23 @@
       // and if so, it redirects to the proper route using Vue Router
       (function() {
         // If we received a redirect with the path in the hash
-        if (window.location.hash && window.location.hash.length > 1) {
+        if (window.location.hash && window.location.hash.length > 2) {
           // Get the path from the hash (remove the # symbol)
           var path = window.location.hash.substring(1);
           
-          // Remove the hash from the URL without reloading the page
-          // Don't add the path to pathname, as Vue Router will handle it
+          // Store the path for Vue Router to use once it initializes
+          window.__INITIAL_PATH__ = path;
+          
+          // Only replace the hash with empty, but maintain the base path
+          // This keeps us at /SocSite/ without the hash
           history.replaceState(null, null, window.location.pathname);
           
-          // The Vue router will automatically handle this path once the app is mounted
-          // This approach relies on Vue Router's history mode handling the path
+          // Vue Router will handle routing to the correct component once initialized
+          console.log("Redirected from 404.html to path:", path);
         }
       })();
     </script>
-    <script type="module" crossorigin src="./assets/index-Bnmkvoq2.js"></script>
+    <script type="module" crossorigin src="./assets/index-CPFBMM-I.js"></script>
     <link rel="stylesheet" crossorigin href="./assets/index-CoavnNHm.css">
   </head>
   <body>

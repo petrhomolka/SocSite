@@ -4,31 +4,22 @@
   <meta charset="utf-8">
   <title>Redirecting...</title>
   <script>
-    // This script takes the current URL path and converts it to a form that
-    // can be passed through the URL hash, then redirects to the root URL with
-    // that hash value.
-
-    // Parse the URL
-    var pathSegments = window.location.pathname.split('/');
-    var repoName = "SocSite"; // Repository name
+    // Get the repository name
+    var repoName = "SocSite";
     
-    // Extract the path after the repository name
-    var path = '';
-    var repoIndex = pathSegments.indexOf(repoName);
+    // Get the current path excluding the repo name
+    var fullPath = window.location.pathname;
+    var pathWithoutRepo = fullPath.replace('/' + repoName + '/', '');
     
-    if (repoIndex !== -1 && pathSegments.length > repoIndex + 1) {
-      // Join all segments after the repo name
-      path = pathSegments.slice(repoIndex + 1).join('/');
-    } else {
-      // Fall back to using the whole path except leading slash
-      path = window.location.pathname.replace(/^\//, '');
-      if (path.startsWith(repoName + '/')) {
-        path = path.substring(repoName.length + 1);
-      }
-    }
+    // Create the redirect URL with the path in the hash fragment
+    var redirectUrl = window.location.origin + '/' + repoName + '/#/' + pathWithoutRepo;
     
-    // Redirect to the main page with the path in the hash
-    var redirectUrl = window.location.origin + '/' + repoName + '/#/' + path;
+    // Log for debugging
+    console.log("Original URL:", fullPath);
+    console.log("Path without repo:", pathWithoutRepo);
+    console.log("Redirecting to:", redirectUrl);
+    
+    // Redirect
     window.location.replace(redirectUrl);
   </script>
 </head>
@@ -36,7 +27,15 @@
   <h1>Redirecting...</h1>
   <p>If you are not redirected automatically, please click <a id="redirect-link" href="#">here</a>.</p>
   <script>
-    document.getElementById('redirect-link').href = window.location.origin + '/' + repoName + '/';
+    // Get the repository name
+    var repoName = "SocSite";
+    
+    // Get the current path excluding the repo name
+    var fullPath = window.location.pathname;
+    var pathWithoutRepo = fullPath.replace('/' + repoName + '/', '');
+    
+    // Update the fallback link
+    document.getElementById('redirect-link').href = window.location.origin + '/' + repoName + '/#/' + pathWithoutRepo;
   </script>
 </body>
 </html>
